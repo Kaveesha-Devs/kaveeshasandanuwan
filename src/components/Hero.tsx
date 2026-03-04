@@ -38,7 +38,7 @@ export default function Hero() {
   }, [displayText, isDeleting, currentRole])
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden grid-bg">
+    <section className="relative flex items-center min-h-screen overflow-hidden grid-bg">
       {/* Background Orbs */}
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[100px] pointer-events-none" />
@@ -48,16 +48,16 @@ export default function Hero() {
       <motion.div
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/4 right-1/5 w-40 h-40 border border-primary/10 rounded-full"
+        className="absolute w-40 h-40 border rounded-full top-1/4 right-1/5 border-primary/10"
       />
       <motion.div
         animate={{ y: [0, 20, 0], rotate: [0, 90, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute bottom-1/3 right-1/3 w-20 h-20 border border-secondary/10 rotate-45"
+        className="absolute w-20 h-20 rotate-45 border bottom-1/3 right-1/3 border-secondary/10"
       />
 
-      <div className="max-w-7xl mx-auto px-6 pt-24 pb-12 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="w-full px-6 pt-24 pb-12 mx-auto max-w-7xl">
+        <div className="grid items-center gap-16 lg:grid-cols-2">
           {/* Left Content */}
           <div>
             {/* Tag */}
@@ -80,7 +80,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="section-heading text-6xl lg:text-8xl text-white leading-[0.9] mb-4"
             >
-              Kaveesha
+              Kaveesha Sandanuwan
               <br />
               <span className="gradient-text">Muthugala</span>
             </motion.h1>
@@ -90,10 +90,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex items-center gap-3 mb-8 h-8"
+              className="flex items-center h-8 gap-3 mb-8"
             >
               <span className="font-mono text-sm text-white/30 uppercase tracking-[0.15em]">~/</span>
-              <span className="font-mono text-primary text-lg">
+              <span className="font-mono text-lg text-primary">
                 {displayText}
                 <span className="animate-pulse">|</span>
               </span>
@@ -104,7 +104,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-white/50 text-lg leading-relaxed mb-10 max-w-lg"
+              className="max-w-lg mb-10 text-lg leading-relaxed text-white/50"
             >
               Software Engineering undergraduate passionate about building
               innovative digital solutions. Proficient in React, Next.js, Flutter,
@@ -135,8 +135,8 @@ export default function Hero() {
                 { value: '10+', label: 'Technologies' },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="font-display font-800 text-3xl text-primary">{stat.value}</div>
-                  <div className="font-mono text-xs text-white/40 uppercase tracking-wider mt-1">{stat.label}</div>
+                  <div className="text-3xl font-display font-800 text-primary">{stat.value}</div>
+                  <div className="mt-1 font-mono text-xs tracking-wider uppercase text-white/40">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
@@ -147,7 +147,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:flex justify-center items-center relative"
+            className="relative items-center justify-center hidden lg:flex"
           >
             {/* Avatar Circle */}
             <div className="relative">
@@ -155,16 +155,16 @@ export default function Hero() {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="w-80 h-80 rounded-full border border-dashed border-primary/20"
+                className="border border-dashed rounded-full w-80 h-80 border-primary/20"
               />
 
               {/* Inner circle – Photo */}
-              <div className="absolute inset-8 rounded-full border border-primary/20 overflow-hidden">
+              <div className="absolute overflow-hidden border rounded-full inset-8 border-primary/20">
                 {/* ✅ ඔයාගේ photo එක public/photo.jpg ලෙ දාන්න */}
                 <img
                   src="/photo.jpg"
                   alt="Kaveesha Muthugala"
-                  className="w-full h-full object-cover object-center"
+                  className="object-cover object-center w-full h-full"
                   onError={(e) => {
                     // Fallback: photo නැත්නම් initials පෙන්නන්න
                     const t = e.currentTarget
@@ -175,17 +175,17 @@ export default function Hero() {
                 />
                 {/* Fallback – photo.jpg නැත්නම් මේක පෙන්නේ */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-br from-dark-2 to-dark-3 items-center justify-center"
+                  className="absolute inset-0 items-center justify-center bg-gradient-to-br from-dark-2 to-dark-3"
                   style={{ display: 'none' }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
                   <div className="relative text-center">
-                    <div className="font-display font-800 text-6xl text-white">K</div>
-                    <div className="font-display font-800 text-6xl text-primary -mt-2">M</div>
+                    <div className="text-6xl text-white font-display font-800">K</div>
+                    <div className="-mt-2 text-6xl font-display font-800 text-primary">M</div>
                   </div>
                 </div>
                 {/* Photo overlay glow */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/40 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-dark/40 via-transparent to-transparent" />
               </div>
 
               {/* Orbiting dots */}
@@ -236,9 +236,9 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute flex flex-col items-center gap-2 -translate-x-1/2 bottom-8 left-1/2"
       >
-        <span className="font-mono text-xs text-white/30 uppercase tracking-widest">Scroll</span>
+        <span className="font-mono text-xs tracking-widest uppercase text-white/30">Scroll</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}

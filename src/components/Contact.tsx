@@ -36,21 +36,20 @@ function Card3D({ item, delay }: { item: typeof contactItems[0], delay: number }
       ref={cardRef}
       onMouseMove={handleMouse}
       onMouseLeave={handleLeave}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 800 }}
+      style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 800, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' } as React.CSSProperties}
       whileHover={{ scale: 1.06 }}
       transition={{ duration: 0.2 }}
-      className="rounded-2xl p-6 text-center cursor-pointer transition-colors duration-300 group"
-      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', transformStyle: 'preserve-3d' } as React.CSSProperties}
+      className="p-6 text-center transition-colors duration-300 cursor-pointer rounded-2xl group"
     >
       {/* Glow on hover */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+      <div className="absolute inset-0 transition-opacity duration-300 opacity-0 pointer-events-none rounded-2xl group-hover:opacity-100"
         style={{ boxShadow: `inset 0 0 30px ${item.color}15` }} />
 
       {/* Icon */}
-      <div className="w-14 h-14 mx-auto mb-4 relative" style={{ transform: 'translateZ(20px)' }}>
+      <div className="relative mx-auto mb-4 w-14 h-14" style={{ transform: 'translateZ(20px)' }}>
         <Image src={item.img} alt={item.label} width={56} height={56} className="object-contain w-full h-full" />
       </div>
-      <p className="font-mono text-xs text-white/30 uppercase tracking-wider mb-2">{item.label}</p>
+      <p className="mb-2 font-mono text-xs tracking-wider uppercase text-white/30">{item.label}</p>
       <p className="text-sm font-semibold break-all" style={{ color: item.color, transform: 'translateZ(10px)' }}>
         {item.value}
       </p>
@@ -94,7 +93,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mb-6 text-5xl text-white lg:text-6xl font-bold"
+            className="mb-6 text-5xl font-bold text-white lg:text-6xl"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Let's <span className="gradient-text">Connect</span>
@@ -111,7 +110,7 @@ export default function Contact() {
 
         {/* 3D Contact Cards */}
         {inView && (
-          <div className="grid max-w-5xl gap-5 mx-auto mb-16 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          <div className="grid max-w-5xl grid-cols-2 gap-5 mx-auto mb-16 md:grid-cols-3 lg:grid-cols-5">
             {contactItems.map((item, i) => (
               <Card3D key={item.label} item={item} delay={0.3 + i * 0.08} />
             ))}

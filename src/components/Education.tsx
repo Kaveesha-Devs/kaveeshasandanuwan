@@ -1,304 +1,188 @@
-"use client";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+'use client'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import Image from 'next/image'
 
 const timeline = [
   {
-    icon: "🎓",
-    iconBg: "from-purple-500 to-indigo-600",
-    title: "BSc (Hons) Software Engineering Undergraduate",
-    place: "CINEC Campus",
-    period: "2023 - Present",
-    side: "left",
+    img: '/logos/CINEC.jpg',
+    title: 'BSc (Hons) Software Engineering Undergraduate',
+    place: 'CINEC Campus',
+    period: '2023 – Present',
+    color: '#0AFFA3',
+    current: true,
     points: [
-      "Pursuing a Bachelor of Science (Hons) degree in Software Engineering.",
-      "Strong foundation in Data Structures & Algorithms, Computer Architecture, Operating Systems, and Database Systems.",
-      "Hands-on experience in Object-Oriented Programming, Web Development, and Mobile Computing.",
-      "Collaborating with peers on academic projects and group assignments.",
-      "Participating in coding competitions and tech-related extracurricular activities.",
+      'Pursuing a Bachelor of Science (Hons) degree in Software Engineering.',
+      'Strong foundation in Data Structures & Algorithms, Computer Architecture, Operating Systems, and Database Systems.',
+      'Hands-on experience in Object-Oriented Programming, Web Development, and Mobile Computing.',
+      'Engaged in academic projects, collaborative assignments, and practical software development tasks.',
     ],
   },
   {
-    icon: "⚛️",
-    iconBg: "from-cyan-400 to-blue-500",
-    title: "React.js Developer (Personal Projects)",
-    place: "University",
-    period: "2024 - Present",
-    side: "right",
+    img: '/logos/react.png',
+    title: 'React.js Developer',
+    place: 'Personal Projects',
+    period: '2024 – Present',
+    color: '#00C4FF',
+    current: true,
     points: [
-      "Developed and maintained web applications using React.js and related technologies.",
-      "Built responsive user interfaces and ensured cross-browser compatibility.",
-      "Implemented features based on self-driven project requirements.",
-      "Practiced version control and code reviews through GitHub.",
+      'Developing responsive and dynamic web applications using React.js.',
+      'Building reusable components and implementing modern UI/UX practices.',
+      'Integrating REST APIs and managing state effectively.',
+      'Deploying projects using modern tools and version control systems.',
     ],
   },
   {
-    icon: "📱",
-    iconBg: "from-cyan-400 to-blue-500",
-    title: "Flutter Developer (Personal Projects)",
-    place: "University",
-    period: "2024 - Present",
-    side: "left",
+    img: '/logos/flutter_logo.png',
+    title: 'Flutter Developer',
+    place: 'Personal Projects',
+    period: '2024 – Present',
+    color: '#54C5F8',
+    current: true,
     points: [
-      "Designing and developing cross-platform mobile applications using Flutter & Dart.",
-      "Implementing clean UI designs and responsive layouts.",
-      "Integrating Firebase and backend services for real-time functionality.",
-      "Publishing and testing apps across Android environments.",
+      'Designing and developing cross-platform mobile applications using Flutter & Dart.',
+      'Implementing clean UI designs and responsive layouts.',
+      'Integrating Firebase and backend services for real-time functionality.',
+      'Publishing and testing apps across Android environments.',
     ],
   },
   {
-    icon: "💻",
-    iconBg: "from-purple-500 to-pink-500",
-    title: "Full Stack Developer (Personal Projects)",
-    place: "University Projects",
-    period: "2025 - Present",
-    side: "right",
+    img: '/logos/next.jpg',
+    title: 'Full Stack Developer',
+    place: 'Personal Projects',
+    period: '2025 – Present',
+    color: '#A78BFA',
+    current: true,
     points: [
-      "Developing end-to-end web applications using modern frontend and backend technologies.",
-      "Working with databases such as MySQL and MongoDB.",
-      "Building RESTful APIs and managing server-side logic.",
-      "Implementing authentication, authorization, and secure application architecture.",
+      'Developing end-to-end web applications using modern frontend and backend technologies.',
+      'Working with databases such as MySQL and MongoDB.',
+      'Building RESTful APIs and managing server-side logic.',
+      'Implementing authentication, authorization, and secure application architecture.',
     ],
   },
   {
-    icon: "🚀",
-    iconBg: "from-orange-400 to-pink-500",
-    title: "Real-World Client Experience",
-    place: "Freelance / Client Projects",
-    period: "2025 - Present",
-    side: "left",
+    img: '/logos/github.png',
+    title: 'Real-World Client Experience',
+    place: 'Freelance / Client Projects',
+    period: '2025 – Present',
+    color: '#FF3D6B',
+    current: true,
     points: [
-      "Delivering custom software solutions for real clients based on business requirements.",
-      "Communicating with clients to gather requirements and provide technical solutions.",
-      "Managing full project lifecycle from planning to deployment.",
-      "Ensuring code quality, performance optimization, and client satisfaction.",
+      'Delivering custom software solutions for real clients based on business requirements.',
+      'Communicating with clients to gather requirements and provide technical solutions.',
+      'Managing full project lifecycle from planning to deployment.',
+      'Ensuring code quality, performance optimization, and client satisfaction.',
     ],
   },
-];
-
-function TimelineItem({
-  item,
-  index,
-}: {
-  item: (typeof timeline)[0];
-  index: number;
-}) {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
-  const isLeft = item.side === "left";
-
-  return (
-    <div
-      ref={ref}
-      className="relative flex items-start justify-center min-h-[200px] mb-4"
-    >
-      {/* Left card */}
-      <div className="w-[calc(50%-48px)] flex justify-end pr-4">
-        {isLeft && (
-          <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-md"
-          >
-            <div
-              className="relative p-6 rounded-xl"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              {/* Arrow pointing right toward center */}
-              <div
-                className="absolute right-[-10px] top-8 w-0 h-0"
-                style={{
-                  borderTop: "10px solid transparent",
-                  borderBottom: "10px solid transparent",
-                  borderLeft: "10px solid rgba(255,255,255,0.08)",
-                }}
-              />
-              <h3
-                className="mb-1 text-lg font-bold text-white"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {item.title}
-              </h3>
-              <p className="mb-4 text-sm text-white/40">{item.place}</p>
-              <ul className="space-y-2">
-                {item.points.map((pt, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.2 + i * 0.07 }}
-                    className="flex items-start gap-2 text-sm text-white/60"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white/30 flex-shrink-0" />
-                    {pt}
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        )}
-        {!isLeft && (
-          /* Date label on left side for right cards */
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5 }}
-            className="self-start pt-8 text-right"
-          >
-            <span className="font-mono text-sm text-white/40">
-              {item.period}
-            </span>
-          </motion.div>
-        )}
-      </div>
-
-      {/* Center icon */}
-      <div className="z-10 flex flex-col items-center flex-shrink-0 w-24">
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={inView ? { scale: 1, opacity: 1 } : {}}
-          transition={{
-            duration: 0.5,
-            delay: 0.1,
-            type: "spring",
-            bounce: 0.4,
-          }}
-          className={`w-14 h-14 rounded-full bg-gradient-to-br ${item.iconBg} flex items-center justify-center text-2xl shadow-lg`}
-          style={{ boxShadow: "0 0 30px rgba(139,92,246,0.4)" }}
-        >
-          {item.icon}
-        </motion.div>
-      </div>
-
-      {/* Right card */}
-      <div className="w-[calc(50%-48px)] flex justify-start pl-4">
-        {!isLeft && (
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full max-w-md"
-          >
-            <div
-              className="relative p-6 rounded-xl"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              {/* Arrow pointing left toward center */}
-              <div
-                className="absolute left-[-10px] top-8 w-0 h-0"
-                style={{
-                  borderTop: "10px solid transparent",
-                  borderBottom: "10px solid transparent",
-                  borderRight: "10px solid rgba(255,255,255,0.08)",
-                }}
-              />
-              <h3
-                className="mb-1 text-lg font-bold text-white"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {item.title}
-              </h3>
-              <p className="mb-4 text-sm text-white/40">{item.place}</p>
-              <ul className="space-y-2">
-                {item.points.map((pt, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.2 + i * 0.07 }}
-                    className="flex items-start gap-2 text-sm text-white/60"
-                  >
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white/30 flex-shrink-0" />
-                    {pt}
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        )}
-        {isLeft && (
-          /* Date label on right side for left cards */
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5 }}
-            className="self-start pt-8"
-          >
-            <span className="font-mono text-sm text-white/40">
-              {item.period}
-            </span>
-          </motion.div>
-        )}
-      </div>
-    </div>
-  );
-}
+]
 
 export default function Education() {
-  const [headerRef, headerInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 })
 
   return (
-    <section
-      id="education"
-      className="relative py-24 overflow-hidden"
-      style={{ background: "#050A12" }}
-    >
-      {/* Purple/blue glow bg — matches screenshot */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(80,20,120,0.25)_0%,transparent_65%)] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-900/15 blur-[120px] pointer-events-none" />
+    <section id="education" ref={ref} className="relative py-32" style={{ background: '#050A12' }}>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(40,20,80,0.15)_0%,transparent_70%)] pointer-events-none" />
 
-      <div className="relative z-10 px-6 mx-auto max-w-7xl">
+      <div className="relative z-10 max-w-6xl px-6 mx-auto">
         {/* Header */}
-        <div ref={headerRef} className="mb-20 text-center">
+        <div className="mb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={headerInView ? { opacity: 1, y: 0 } : {}}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur mb-6"
           >
-            <span className="text-lg">🏆</span>
-            <span className="text-sm font-medium text-white/80">
-              My Career Overview
-            </span>
+            <span className="text-lg">🏅</span>
+            <span className="text-sm font-medium text-white/80">My Career Overview</span>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
-            animate={headerInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.1 }}
-            className="text-4xl font-bold lg:text-5xl text-white/80"
-            style={{ fontFamily: "var(--font-display)" }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-5xl font-bold lg:text-6xl text-white/80"
+            style={{ fontFamily: 'var(--font-display)' }}
           >
-            What I have done so far
+            What I Have <span className="gradient-text">Done So Far</span>
           </motion.h2>
         </div>
 
-        {/* Timeline */}
+        {/* Timeline — vertical center line like dulaj */}
         <div className="relative">
           {/* Center vertical line */}
-          <div
-            className="absolute top-0 bottom-0 w-px -translate-x-1/2 left-1/2"
-            style={{
-              background:
-                "linear-gradient(to bottom, transparent, rgba(139,92,246,0.6) 10%, rgba(139,92,246,0.3) 90%, transparent)",
-            }}
-          />
+          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-white/20 via-white/10 to-transparent" />
 
-          {/* Items */}
-          <div className="space-y-6">
-            {timeline.map((item, i) => (
-              <TimelineItem key={item.title} item={item} index={i} />
-            ))}
+          <div className="space-y-10">
+            {timeline.map((item, i) => {
+              const isLeft = i % 2 === 0
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: isLeft ? -60 : 60 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                  className={`relative flex flex-col lg:flex-row items-stretch gap-0 ${isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
+                >
+                  {/* Card side */}
+                  <div className="w-full lg:w-[calc(50%-40px)]">
+                    <div
+                      className="rounded-2xl p-6 h-full hover:border-white/20 transition-all duration-500 hover:bg-white/[0.04] group"
+                      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}
+                    >
+                      {/* Top row */}
+                      <div className="flex items-start justify-between gap-3 mb-4">
+                        <div className="flex items-center gap-3">
+                          {/* Real image icon */}
+                          <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-white/5 flex items-center justify-center p-1.5">
+                            <Image src={item.img} alt={item.title} width={40} height={40} className="object-contain w-full h-full" />
+                          </div>
+                          <div>
+                            <h3 className="text-sm font-bold leading-snug text-white" style={{ fontFamily: 'var(--font-display)' }}>{item.title}</h3>
+                            <p className="text-white/40 text-xs mt-0.5">{item.place}</p>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+                          <span className="font-mono text-xs px-2.5 py-1 rounded-full whitespace-nowrap" style={{ color: item.color, background: `${item.color}18` }}>
+                            {item.period}
+                          </span>
+                          {item.current && (
+                            <span className="flex items-center gap-1 font-mono text-xs text-primary">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                              Active
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <ul className="space-y-2">
+                        {item.points.map((point, pi) => (
+                          <li key={pi} className="flex items-start gap-2 text-sm leading-relaxed text-white/50">
+                            <span className="flex-shrink-0 w-1 h-1 mt-2 rounded-full" style={{ background: item.color }} />
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Center dot — 80px wide gap */}
+                  <div className="relative z-10 items-center justify-center flex-shrink-0 hidden w-20 lg:flex">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={inView ? { scale: 1 } : {}}
+                      transition={{ delay: 0.2 + i * 0.12, type: 'spring', stiffness: 200 }}
+                      className="w-12 h-12 rounded-xl overflow-hidden border-2 flex items-center justify-center bg-[#0A1220]"
+                      style={{ borderColor: item.color, boxShadow: `0 0 20px ${item.color}40` }}
+                    >
+                      <Image src={item.img} alt={item.title} width={36} height={36} className="object-contain p-1" />
+                    </motion.div>
+                  </div>
+
+                  {/* Empty side */}
+                  <div className="hidden lg:block w-[calc(50%-40px)]" />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }

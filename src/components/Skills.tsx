@@ -1,66 +1,66 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import Image from 'next/image'
 
-// Tech skill icons as inline SVG/emoji — matches screenshot style cards with logo + name + level bar
 const skillCategories = [
   {
     category: 'Programming Languages',
     color: '#a78bfa',
     skills: [
-      { name: 'C', level: 50, label: 'Beginner', barColor: '#6b7280', icon: '🔵' },
-      { name: 'Python', level: 40, label: 'Beginner', barColor: '#f6c90e', icon: '🐍' },
-      { name: 'Java', level: 70, label: 'Intermediate', barColor: '#f89820', icon: '☕' },
+      { name: 'C', level: 50, label: 'Beginner', barColor: '#6b7280', img: '/logos/C.png' },
+      { name: 'Python', level: 40, label: 'Beginner', barColor: '#f6c90e', img: '/logos/python-logo.png' },
+      { name: 'Java', level: 70, label: 'Intermediate', barColor: '#f89820', img: '/logos/java-logo.jpg' },
     ],
   },
   {
     category: 'Web Development',
     color: '#a78bfa',
     skills: [
-      { name: 'HTML5', level: 95, label: 'Expert', barColor: '#22d3ee', icon: '🧱' },
-      { name: 'CSS3', level: 90, label: 'Expert', barColor: '#22d3ee', icon: '🎨' },
-      { name: 'JavaScript', level: 75, label: 'Intermediate', barColor: '#f6c90e', icon: '⚡' },
-      { name: 'React', level: 80, label: 'Advanced', barColor: '#38bdf8', icon: '⚛️' },
-      { name: 'Next.js', level: 80, label: 'Advanced', barColor: '#38bdf8', icon: '▲' },
-      { name: 'PHP', level: 70, label: 'Intermediate', barColor: '#818cf8', icon: '🐘' },
-      { name: 'Node.js', level: 70, label: 'Intermediate', barColor: '#4ade80', icon: '🟢' },
-      { name: 'TypeScript', level: 75, label: 'Intermediate', barColor: '#38bdf8', icon: '📘' },
+      { name: 'HTML5', level: 95, label: 'Expert', barColor: '#22d3ee', img: '/logos/HTML_5.jpg' },
+      { name: 'CSS3', level: 90, label: 'Expert', barColor: '#22d3ee', img: '/logos/css3-logo.png' },
+      { name: 'JavaScript', level: 75, label: 'Intermediate', barColor: '#f6c90e', img: '/logos/JS.png' },
+      { name: 'React', level: 80, label: 'Advanced', barColor: '#38bdf8', img: '/logos/react.png' },
+      { name: 'Next.js', level: 80, label: 'Advanced', barColor: '#38bdf8', img: '/logos/next.jpg' },
+      { name: 'PHP', level: 70, label: 'Intermediate', barColor: '#818cf8', img: '/logos/php.png' },
+      { name: 'Node.js', level: 70, label: 'Intermediate', barColor: '#4ade80', img: '/logos/node.jpg' },
+      { name: 'TypeScript', level: 75, label: 'Intermediate', barColor: '#38bdf8', img: '/logos/typescript-logo.png' },
     ],
   },
   {
     category: 'Mobile Development',
     color: '#a78bfa',
     skills: [
-      { name: 'Flutter', level: 75, label: 'Intermediate', barColor: '#38bdf8', icon: '📱' },
-      { name: 'Android (Java)', level: 60, label: 'Beginner', barColor: '#4ade80', icon: '🤖' },
+      { name: 'Flutter', level: 75, label: 'Intermediate', barColor: '#38bdf8', img: '/logos/flutter_logo.png' },
+      { name: 'Android', level: 60, label: 'Beginner', barColor: '#4ade80', img: '/logos/android-logo-0.png' },
     ],
   },
   {
     category: 'Backend & Database',
     color: '#a78bfa',
     skills: [
-      { name: 'MySQL', level: 80, label: 'Advanced', barColor: '#f97316', icon: '🗄️' },
-      { name: 'Firebase', level: 75, label: 'Intermediate', barColor: '#f6c90e', icon: '🔥' },
-      { name: 'MongoDB', level: 70, label: 'Intermediate', barColor: '#4ade80', icon: '🍃' },
+      { name: 'MySQL', level: 80, label: 'Advanced', barColor: '#f97316', img: '/logos/mysql_logo.png' },
+      { name: 'Firebase', level: 75, label: 'Intermediate', barColor: '#f6c90e', img: '/logos/firebase.png' },
+      { name: 'MongoDB', level: 70, label: 'Intermediate', barColor: '#4ade80', img: '/logos/mongo_db.png' },
     ],
   },
   {
     category: 'Testing & QA',
     color: '#a78bfa',
     skills: [
-      { name: 'Selenium', level: 75, label: 'Intermediate', barColor: '#4ade80', icon: '🧪' },
-      { name: 'JMeter', level: 70, label: 'Intermediate', barColor: '#f97316', icon: '📊' },
-      { name: 'Manual Testing', level: 80, label: 'Advanced', barColor: '#22d3ee', icon: '✅' },
+      { name: 'Selenium', level: 75, label: 'Intermediate', barColor: '#4ade80', img: '/logos/selenium-logo.png' },
+      { name: 'JMeter', level: 70, label: 'Intermediate', barColor: '#f97316', img: '/logos/jmeter-logo.png' },
+      { name: 'Manual Testing', level: 80, label: 'Advanced', barColor: '#22d3ee', img: '/logos/manual_testing.png' },
     ],
   },
   {
     category: 'Design & Tools',
     color: '#a78bfa',
     skills: [
-      { name: 'Figma', level: 80, label: 'Advanced', barColor: '#f97316', icon: '🎯' },
-      { name: 'Git/GitHub', level: 85, label: 'Advanced', barColor: '#22d3ee', icon: '🐙' },
-      { name: 'Postman', level: 75, label: 'Intermediate', barColor: '#f97316', icon: '📮' },
-      { name: 'Jira', level: 70, label: 'Intermediate', barColor: '#38bdf8', icon: '📋' },
+      { name: 'Figma', level: 80, label: 'Advanced', barColor: '#f97316', img: '/logos/figma.png' },
+      { name: 'GitHub', level: 85, label: 'Advanced', barColor: '#22d3ee', img: '/logos/github.png' },
+      { name: 'Postman', level: 75, label: 'Intermediate', barColor: '#f97316', img: '/logos/Postman-Logo.jpg' },
+      { name: 'Jira', level: 70, label: 'Intermediate', barColor: '#38bdf8', img: '/logos/jira.jpg' },
     ],
   },
 ]
@@ -70,10 +70,9 @@ export default function Skills() {
 
   return (
     <section id="skills" ref={ref} className="relative py-24 overflow-hidden" style={{ background: '#050A12' }}>
-      {/* Network bg reuse */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(80,40,120,0.12)_0%,transparent_60%)] pointer-events-none" />
 
-      <div className="relative z-10 px-6 mx-auto max-w-7xl">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -82,22 +81,20 @@ export default function Skills() {
         >
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur">
             <span className="text-lg">💡</span>
-            <span className="text-sm font-medium text-white/80">My Skills</span>
+            <span className="text-white/80 text-sm font-medium">My Skills</span>
           </div>
         </motion.div>
 
-        {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1 }}
-          className="mb-16 text-4xl font-bold text-center lg:text-5xl text-white/80"
+          className="text-4xl lg:text-5xl font-bold text-white/80 text-center mb-16"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Tools that drive my work
         </motion.h2>
 
-        {/* Categories */}
         <div className="space-y-14">
           {skillCategories.map((cat, catI) => (
             <motion.div
@@ -106,44 +103,40 @@ export default function Skills() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + catI * 0.1 }}
             >
-              {/* Category title — purple like screenshot */}
-              <h3 className="mb-6 text-lg font-bold text-center" style={{ color: cat.color, fontFamily: 'var(--font-display)' }}>
+              <h3 className="text-center text-lg font-bold mb-8" style={{ color: cat.color, fontFamily: 'var(--font-display)' }}>
                 {cat.category}
               </h3>
-
-              {/* Skill cards row */}
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-center gap-5">
                 {cat.skills.map((skill, skillI) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ delay: 0.15 + catI * 0.08 + skillI * 0.06 }}
-                    className="flex flex-col items-center p-5 transition-all duration-300 rounded-xl group hover:border-white/20"
+                    className="rounded-xl p-5 flex flex-col items-center group hover:border-white/25 hover:bg-white/[0.06] transition-all duration-300"
                     style={{
                       background: 'rgba(255,255,255,0.04)',
                       border: '1px solid rgba(255,255,255,0.08)',
                       width: '160px',
-                      minWidth: '140px',
                     }}
                   >
-                    {/* Icon */}
-                    <div className="mb-3 text-4xl transition-transform duration-300 group-hover:scale-110">
-                      {skill.icon}
+                    {/* Logo image */}
+                    <div className="w-14 h-14 mb-3 relative flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Image
+                        src={skill.img}
+                        alt={skill.name}
+                        width={56}
+                        height={56}
+                        className="object-contain w-full h-full rounded-lg"
+                      />
                     </div>
-
-                    {/* Name */}
-                    <p className="mb-3 text-sm font-bold text-center text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                    <p className="text-white font-bold text-sm mb-3 text-center" style={{ fontFamily: 'var(--font-display)' }}>
                       {skill.name}
                     </p>
-
-                    {/* Level label + percent */}
                     <div className="flex justify-between items-center w-full mb-1.5">
-                      <span className="text-xs text-white/40">{skill.label}</span>
-                      <span className="font-mono text-xs text-white/60">{skill.level}%</span>
+                      <span className="text-white/40 text-xs">{skill.label}</span>
+                      <span className="text-white/60 text-xs font-mono">{skill.level}%</span>
                     </div>
-
-                    {/* Progress bar */}
                     <div className="w-full h-1.5 bg-white/8 rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}

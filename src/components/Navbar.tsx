@@ -4,9 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
   { href: "#projects", label: "Projects" },
-  { href: "#education", label: "Education" },
+  { href: "#reviews", label: "Reviews" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -60,7 +59,7 @@ export default function Navbar() {
           {/* CTA */}
           <div className="items-center hidden gap-4 md:flex">
             <a
-              href="mailto:kaveeshasandanuwan@gmail.com"
+              href="mailto:kaveesha@example.com"
               className="text-sm btn-primary"
             >
               Hire Me
@@ -109,7 +108,7 @@ export default function Navbar() {
               </motion.a>
             ))}
             <motion.a
-              href="mailto:kaveeshasandanuwan@gmail.com"
+              href="mailto:kaveesha@example.com"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}

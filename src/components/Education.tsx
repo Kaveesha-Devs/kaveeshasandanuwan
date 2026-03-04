@@ -1,139 +1,304 @@
-'use client'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+"use client";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-const education = [
+const timeline = [
   {
-    degree: 'BSc (Hons) Software Engineering',
-    school: 'Colombo International Nautical and Engineering College (CINEC)',
-    period: 'Oct 2023 – Present',
-    coursework: ['Data Structures & Algorithms', 'Computer Architecture', 'Operating Systems', 'Database Systems', 'OOP', 'Mobile Computing', 'Web Development', 'Computer Networking'],
-    color: '#0AFFA3',
-    icon: '🎓',
-    current: true,
+    icon: "🎓",
+    iconBg: "from-purple-500 to-indigo-600",
+    title: "BSc (Hons) Software Engineering Undergraduate",
+    place: "CINEC Campus",
+    period: "2023 - Present",
+    side: "left",
+    points: [
+      "Pursuing a Bachelor of Science (Hons) degree in Software Engineering.",
+      "Strong foundation in Data Structures & Algorithms, Computer Architecture, Operating Systems, and Database Systems.",
+      "Hands-on experience in Object-Oriented Programming, Web Development, and Mobile Computing.",
+      "Collaborating with peers on academic projects and group assignments.",
+      "Participating in coding competitions and tech-related extracurricular activities.",
+    ],
   },
   {
-    degree: 'Diploma in Business Management',
-    school: 'Institute of Management & Business Studies (IMBS Green Campus)',
-    period: '2022 – 2023',
-    coursework: ['Project Management', 'Business Development', 'Business Management', 'HR Management'],
-    color: '#00C4FF',
-    icon: '📊',
-    current: false,
+    icon: "⚛️",
+    iconBg: "from-cyan-400 to-blue-500",
+    title: "React.js Developer (Personal Projects)",
+    place: "University",
+    period: "2024 - Present",
+    side: "right",
+    points: [
+      "Developed and maintained web applications using React.js and related technologies.",
+      "Built responsive user interfaces and ensured cross-browser compatibility.",
+      "Implemented features based on self-driven project requirements.",
+      "Practiced version control and code reviews through GitHub.",
+    ],
   },
   {
-    degree: 'Advanced Certificate in Information Technology',
-    school: 'SIBA Campus – Sri Lanka',
-    period: '2022',
-    coursework: [],
-    color: '#A78BFA',
-    icon: '💻',
-    current: false,
+    icon: "📱",
+    iconBg: "from-cyan-400 to-blue-500",
+    title: "Flutter Developer (Personal Projects)",
+    place: "University",
+    period: "2024 - Present",
+    side: "left",
+    points: [
+      "Designing and developing cross-platform mobile applications using Flutter & Dart.",
+      "Implementing clean UI designs and responsive layouts.",
+      "Integrating Firebase and backend services for real-time functionality.",
+      "Publishing and testing apps across Android environments.",
+    ],
   },
   {
-    degree: 'Advanced Level Examination – Commerce Stream',
-    school: 'Harischandra National College, Negombo',
-    period: '2021 / 2022',
-    coursework: [],
-    color: '#F59E0B',
-    icon: '📚',
-    current: false,
+    icon: "💻",
+    iconBg: "from-purple-500 to-pink-500",
+    title: "Full Stack Developer (Personal Projects)",
+    place: "University Projects",
+    period: "2025 - Present",
+    side: "right",
+    points: [
+      "Developing end-to-end web applications using modern frontend and backend technologies.",
+      "Working with databases such as MySQL and MongoDB.",
+      "Building RESTful APIs and managing server-side logic.",
+      "Implementing authentication, authorization, and secure application architecture.",
+    ],
   },
-]
+  {
+    icon: "🚀",
+    iconBg: "from-orange-400 to-pink-500",
+    title: "Real-World Client Experience",
+    place: "Freelance / Client Projects",
+    period: "2025 - Present",
+    side: "left",
+    points: [
+      "Delivering custom software solutions for real clients based on business requirements.",
+      "Communicating with clients to gather requirements and provide technical solutions.",
+      "Managing full project lifecycle from planning to deployment.",
+      "Ensuring code quality, performance optimization, and client satisfaction.",
+    ],
+  },
+];
 
-export default function Education() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+function TimelineItem({
+  item,
+  index,
+}: {
+  item: (typeof timeline)[0];
+  index: number;
+}) {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
+  const isLeft = item.side === "left";
 
   return (
-    <section id="education" ref={ref} className="py-32 relative">
-      <div className="absolute inset-0 grid-bg opacity-50 pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 relative">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <motion.span
+    <div
+      ref={ref}
+      className="relative flex items-start justify-center min-h-[200px] mb-4"
+    >
+      {/* Left card */}
+      <div className="w-[calc(50%-48px)] flex justify-end pr-4">
+        {isLeft && (
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-md"
+          >
+            <div
+              className="relative p-6 rounded-xl"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              {/* Arrow pointing right toward center */}
+              <div
+                className="absolute right-[-10px] top-8 w-0 h-0"
+                style={{
+                  borderTop: "10px solid transparent",
+                  borderBottom: "10px solid transparent",
+                  borderLeft: "10px solid rgba(255,255,255,0.08)",
+                }}
+              />
+              <h3
+                className="mb-1 text-lg font-bold text-white"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {item.title}
+              </h3>
+              <p className="mb-4 text-sm text-white/40">{item.place}</p>
+              <ul className="space-y-2">
+                {item.points.map((pt, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.2 + i * 0.07 }}
+                    className="flex items-start gap-2 text-sm text-white/60"
+                  >
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white/30 flex-shrink-0" />
+                    {pt}
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+        {!isLeft && (
+          /* Date label on left side for right cards */
+          <motion.div
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
-            className="font-mono text-xs text-primary uppercase tracking-[0.2em] block mb-3"
+            transition={{ duration: 0.5 }}
+            className="self-start pt-8 text-right"
           >
-            04 / Education
-          </motion.span>
+            <span className="font-mono text-sm text-white/40">
+              {item.period}
+            </span>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Center icon */}
+      <div className="z-10 flex flex-col items-center flex-shrink-0 w-24">
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={inView ? { scale: 1, opacity: 1 } : {}}
+          transition={{
+            duration: 0.5,
+            delay: 0.1,
+            type: "spring",
+            bounce: 0.4,
+          }}
+          className={`w-14 h-14 rounded-full bg-gradient-to-br ${item.iconBg} flex items-center justify-center text-2xl shadow-lg`}
+          style={{ boxShadow: "0 0 30px rgba(139,92,246,0.4)" }}
+        >
+          {item.icon}
+        </motion.div>
+      </div>
+
+      {/* Right card */}
+      <div className="w-[calc(50%-48px)] flex justify-start pl-4">
+        {!isLeft && (
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full max-w-md"
+          >
+            <div
+              className="relative p-6 rounded-xl"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              {/* Arrow pointing left toward center */}
+              <div
+                className="absolute left-[-10px] top-8 w-0 h-0"
+                style={{
+                  borderTop: "10px solid transparent",
+                  borderBottom: "10px solid transparent",
+                  borderRight: "10px solid rgba(255,255,255,0.08)",
+                }}
+              />
+              <h3
+                className="mb-1 text-lg font-bold text-white"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {item.title}
+              </h3>
+              <p className="mb-4 text-sm text-white/40">{item.place}</p>
+              <ul className="space-y-2">
+                {item.points.map((pt, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.2 + i * 0.07 }}
+                    className="flex items-start gap-2 text-sm text-white/60"
+                  >
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white/30 flex-shrink-0" />
+                    {pt}
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+        {isLeft && (
+          /* Date label on right side for left cards */
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="self-start pt-8"
+          >
+            <span className="font-mono text-sm text-white/40">
+              {item.period}
+            </span>
+          </motion.div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function Education() {
+  const [headerRef, headerInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
+  return (
+    <section
+      id="education"
+      className="relative py-24 overflow-hidden"
+      style={{ background: "#050A12" }}
+    >
+      {/* Purple/blue glow bg — matches screenshot */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(80,20,120,0.25)_0%,transparent_65%)] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-900/15 blur-[120px] pointer-events-none" />
+
+      <div className="relative z-10 px-6 mx-auto max-w-7xl">
+        {/* Header */}
+        <div ref={headerRef} className="mb-20 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur mb-6"
+          >
+            <span className="text-lg">🏆</span>
+            <span className="text-sm font-medium text-white/80">
+              My Career Overview
+            </span>
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="section-heading text-5xl lg:text-6xl text-white"
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1 }}
+            className="text-4xl font-bold lg:text-5xl text-white/80"
+            style={{ fontFamily: "var(--font-display)" }}
           >
-            Academic <span className="gradient-text">Journey</span>
+            What I have done so far
           </motion.h2>
         </div>
 
         {/* Timeline */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-white/10 to-transparent hidden md:block" />
+        <div className="relative">
+          {/* Center vertical line */}
+          <div
+            className="absolute top-0 bottom-0 w-px -translate-x-1/2 left-1/2"
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent, rgba(139,92,246,0.6) 10%, rgba(139,92,246,0.3) 90%, transparent)",
+            }}
+          />
 
-          <div className="space-y-8">
-            {education.map((edu, i) => (
-              <motion.div
-                key={edu.degree}
-                initial={{ opacity: 0, x: -40 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.1 + i * 0.15 }}
-                className="md:pl-20 relative group"
-              >
-                {/* Timeline dot */}
-                <div
-                  className="hidden md:flex absolute left-4 top-6 w-9 h-9 rounded-full items-center justify-center text-lg -translate-x-1/2 border-2 transition-all duration-300 group-hover:scale-125"
-                  style={{
-                    borderColor: edu.color,
-                    background: `${edu.color}15`,
-                    boxShadow: edu.current ? `0 0 20px ${edu.color}40` : 'none'
-                  }}
-                >
-                  {edu.icon}
-                </div>
-
-                {/* Card */}
-                <div className="glass-card rounded-2xl p-6 hover:border-white/15 transition-all duration-500 hover:bg-white/[0.02] group-hover:translate-x-1">
-                  <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-display font-700 text-white text-lg">{edu.degree}</h3>
-                        {edu.current && (
-                          <span className="px-2 py-0.5 rounded-full text-xs font-mono bg-primary/20 text-primary border border-primary/30">
-                            Current
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-white/50 text-sm">{edu.school}</p>
-                    </div>
-                    <span
-                      className="font-mono text-xs px-3 py-1.5 rounded-full flex-shrink-0"
-                      style={{ color: edu.color, background: `${edu.color}15` }}
-                    >
-                      {edu.period}
-                    </span>
-                  </div>
-
-                  {edu.coursework.length > 0 && (
-                    <div className="mt-4">
-                      <p className="font-mono text-xs text-white/30 uppercase tracking-wider mb-2">Coursework</p>
-                      <div className="flex flex-wrap gap-2">
-                        {edu.coursework.map((course) => (
-                          <span key={course} className="px-2.5 py-1 rounded-lg text-xs text-white/50 bg-white/5 font-mono">
-                            {course}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
+          {/* Items */}
+          <div className="space-y-6">
+            {timeline.map((item, i) => (
+              <TimelineItem key={item.title} item={item} index={i} />
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,21 +1,20 @@
-import type { Metadata } from 'next'
-import './globals.css'
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Kaveesha Muthugala | Software Engineer',
-  description: 'Software Engineering undergraduate with expertise in full-stack development, mobile apps, and UI/UX design.',
-}
+  title: "Kaveesha Muthugala | Software Engineer",
+  description:
+    "Software Engineering undergraduate with expertise in full-stack development, mobile apps, and UI/UX design.",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className="noise">
-        {children}
-      </body>
+      <body className="noise">{children}</body>
     </html>
-  )
+  );
 }

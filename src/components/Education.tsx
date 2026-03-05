@@ -19,7 +19,7 @@ const timeline = [
     ],
   },
   {
-    img: '/logos/react.png',
+    img: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
     title: 'React.js Developer',
     place: 'Personal Projects',
     period: '2024 – Present',
@@ -33,7 +33,7 @@ const timeline = [
     ],
   },
   {
-    img: '/logos/flutter_logo.png',
+    img: '/logos/flutter1.png',
     title: 'Flutter Developer',
     place: 'Personal Projects',
     period: '2024 – Present',
@@ -61,7 +61,7 @@ const timeline = [
     ],
   },
   {
-    img: '/logos/github.png',
+    img: '/logos/github.jpg',
     title: 'Real-World Client Experience',
     place: 'Freelance / Client Projects',
     period: '2025 – Present',
@@ -105,10 +105,10 @@ export default function Education() {
           </motion.h2>
         </div>
 
-        {/* Timeline — vertical center line */}
+        {/* Timeline — vertical center line like dulaj */}
         <div className="relative">
           {/* Center vertical line */}
-          <div className="absolute top-0 bottom-0 hidden w-1 -translate-x-1/2 lg:block left-1/2 bg-gradient-to-b from-white/20 via-white/10 to-transparent" />
+          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/60 via-primary/20 to-transparent" style={{ boxShadow: '0 0 12px rgba(10,255,163,0.3)' }} />
 
           <div className="space-y-20">
             {timeline.map((item, i) => {
@@ -130,9 +130,12 @@ export default function Education() {
                       {/* Top row */}
                       <div className="flex items-start justify-between gap-3 mb-4">
                         <div className="flex items-center gap-3">
-                          {/* Real image icon */}
-                          <div className="w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 bg-white/5 flex items-center justify-center p-1.5">
-                            <Image src={item.img} alt={item.title} width={40} height={40} className="object-contain w-full h-full" />
+                          {/* Circle icon */}
+                          <div
+                            className="flex items-center justify-center flex-shrink-0 w-12 h-12 p-2 overflow-hidden border-2 rounded-full"
+                            style={{ background: `${item.color}15`, borderColor: `${item.color}50`, boxShadow: `0 0 16px ${item.color}30` }}
+                          >
+                            <Image src={item.img} alt={item.title} width={36} height={36} className="object-contain w-full h-full" />
                           </div>
                           <div>
                             <h3 className="text-sm font-bold leading-snug text-white" style={{ fontFamily: 'var(--font-display)' }}>{item.title}</h3>
@@ -162,16 +165,16 @@ export default function Education() {
                     </div>
                   </div>
 
-                  {/* Center dot — 80px wide gap */}
+                  {/* Center dot — circle */}
                   <div className="relative z-10 items-center justify-center flex-shrink-0 hidden w-20 lg:flex">
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={inView ? { scale: 1 } : {}}
                       transition={{ delay: 0.2 + i * 0.12, type: 'spring', stiffness: 200 }}
-                      className="w-12 h-12 rounded-xl overflow-hidden border-2 flex items-center justify-center bg-[#0A1220]"
-                      style={{ borderColor: item.color, boxShadow: `0 0 20px ${item.color}40` }}
+                      className="w-14 h-14 rounded-full overflow-hidden border-2 flex items-center justify-center bg-[#0A1220] p-2"
+                      style={{ borderColor: item.color, boxShadow: `0 0 24px ${item.color}50` }}
                     >
-                      <Image src={item.img} alt={item.title} width={36} height={36} className="object-contain p-1" />
+                      <Image src={item.img} alt={item.title} width={40} height={40} className="object-contain w-full h-full" />
                     </motion.div>
                   </div>
 

@@ -58,37 +58,10 @@ export default function About() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section id="about" ref={ref} className="relative flex items-center justify-center min-h-screen overflow-hidden" style={{ background: '#050A12' }}>
-      {/* Network bg */}
+    <section id="about" ref={ref} className="relative overflow-hidden" style={{ background: '#050A12' }}>
       <NetworkCanvas />
-
-      {/* Radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(80,40,120,0.18)_0%,transparent_70%)] pointer-events-none" />
 
-      {/* Photo — absolute right, behind text */}
-      <motion.div
-        initial={{ opacity: 0, x: 80 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="absolute bottom-0 right-0 z-0 hidden pointer-events-none lg:block"
-      >
-        <img
-          src="/my22.png"
-          alt="Kaveesha Sandanuwan"
-          className="object-cover object-top"
-          style={{
-            width: '650px',
-            height: '950px',
-            maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
-          }}
-        />
-      </motion.div>
-
-      {/* Overlay to darken photo area slightly */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,rgba(5,10,18,0.6)_30%,transparent_100%)] pointer-events-none z-[1]" />
-
-      {/* CENTER TEXT */}
       <div className="relative z-10 w-full max-w-4xl px-6 py-24 mx-auto text-center">
 
         {/* Badge */}
@@ -109,38 +82,35 @@ export default function About() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-6xl lg:text-7xl font-bold text-white/90 mb-6 leading-[1.1]"
+          className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white/90 mb-6 leading-[1.1]"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Transforming Ideas Into <span className="gradient-text">Scalable Solutions</span>
         </motion.h2>
 
-        {/* Divider */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={inView ? { scaleX: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="w-16 h-px mx-auto mb-10 bg-white/30"
+          className="w-16 h-px mx-auto mb-8 bg-white/30"
         />
 
-        {/* Name/Role */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-6 text-2xl text-white"
+          className="mb-6 text-xl text-white sm:text-2xl"
         >
           <span className="font-bold">Hi, I'm Kaveesha</span>
           <span className="mx-3 text-white/40">|</span>
           <span className="font-semibold text-purple-400">Software Engineer</span>
         </motion.p>
 
-        {/* Bio */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="max-w-2xl mx-auto mb-5 text-xl leading-relaxed text-white/60"
+          className="max-w-2xl mx-auto mb-5 text-base leading-relaxed text-white/60 sm:text-xl"
         >
           Motivated and detail-oriented Software Engineering undergraduate at CINEC Campus.
           Proficient in front-end and back-end technologies including React, Next.js, Flutter, PHP, Java, and Python.
@@ -150,13 +120,12 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.48 }}
-          className="max-w-2xl mx-auto mb-12 text-xl leading-relaxed text-white/60"
+          className="max-w-2xl mx-auto mb-10 text-base leading-relaxed text-white/60 sm:text-xl"
         >
           Experienced in software testing using Selenium WebDriver and JMeter, with expertise in UI/UX design using Figma.
           Currently enhancing skills through Machine Learning. Let's work together to bring your ideas to life!
         </motion.p>
 
-        {/* Divider */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={inView ? { scaleX: 1 } : {}}
@@ -164,12 +133,11 @@ export default function About() {
           className="w-16 h-px mx-auto mb-10 bg-white/20"
         />
 
-        {/* Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.55 }}
-          className="flex justify-center"
+          className="flex justify-center mb-16"
         >
           <a
             href="#contact"
@@ -178,7 +146,47 @@ export default function About() {
             Let's Connect
           </a>
         </motion.div>
+
+        {/* Photo — mobile: below content, desktop: hidden (shown as absolute) */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex justify-center lg:hidden"
+        >
+          <img
+            src="/my22.png"
+            alt="Kaveesha Sandanuwan"
+            className="object-cover object-top"
+            style={{
+              width: '280px',
+              height: '400px',
+              maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+            }}
+          />
+        </motion.div>
       </div>
+
+      {/* Desktop photo — absolute right */}
+      <motion.div
+        initial={{ opacity: 0, x: 80 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="absolute bottom-0 right-0 z-0 hidden pointer-events-none lg:block"
+      >
+        <img
+          src="/my22.png"
+          alt="Kaveesha Sandanuwan"
+          className="object-cover object-top"
+          style={{
+            width: '700px',
+            height: '950px',
+            maskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 65%, transparent 100%)',
+          }}
+        />
+      </motion.div>
     </section>
   )
 }

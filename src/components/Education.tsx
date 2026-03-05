@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import Image from "next/image";
 
 const timeline = [
   {
@@ -83,7 +82,7 @@ export default function Education() {
     <section
       id="education"
       ref={ref}
-      className="relative py-32"
+      className="relative py-32 overflow-hidden"
       style={{ background: "#050A12" }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(40,20,80,0.15)_0%,transparent_70%)] pointer-events-none" />
@@ -112,11 +111,10 @@ export default function Education() {
           </motion.h2>
         </div>
 
-        {/* Timeline — vertical center line like dulaj */}
         <div className="relative">
           {/* Center vertical line */}
           <div
-            className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2.5px] bg-gradient-to-b from-primary/60 via-primary/20 to-transparent"
+            className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/60 via-primary/20 to-transparent"
             style={{ boxShadow: "0 0 12px rgba(10,255,163,0.3)" }}
           />
 
@@ -135,7 +133,7 @@ export default function Education() {
                   }}
                   className={`relative flex flex-col lg:flex-row items-stretch gap-0 ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"}`}
                 >
-                  {/* Card side */}
+                  {/* Card */}
                   <div className="w-full lg:w-[calc(50%-40px)]">
                     <div
                       className="rounded-2xl p-6 h-full hover:border-white/20 transition-all duration-500 hover:bg-white/[0.04] group"
@@ -147,23 +145,22 @@ export default function Education() {
                       {/* Top row */}
                       <div className="flex items-start justify-between gap-3 mb-4">
                         <div className="flex items-center gap-3">
-                          {/* Circle icon */}
+                          {/* Logo circle — white bg */}
                           <div
-                            className="flex items-center justify-center flex-shrink-0 w-12 h-12 p-2 overflow-hidden border-2 rounded-full"
+                            className="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center border-2 overflow-hidden p-1.5"
                             style={{
-                              background: `${item.color}15`,
-                              borderColor: `${item.color}50`,
+                              background: "#ffffff",
+                              borderColor: `${item.color}60`,
                               boxShadow: `0 0 16px ${item.color}30`,
                             }}
                           >
-                            <Image
+                            <img
                               src={item.img}
                               alt={item.title}
-                              width={36}
-                              height={36}
                               className="object-contain w-full h-full"
                             />
                           </div>
+
                           <div>
                             <h3
                               className="text-sm font-bold leading-snug text-white"
@@ -176,6 +173,7 @@ export default function Education() {
                             </p>
                           </div>
                         </div>
+
                         <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
                           <span
                             className="font-mono text-xs px-2.5 py-1 rounded-full whitespace-nowrap"
@@ -194,6 +192,7 @@ export default function Education() {
                           )}
                         </div>
                       </div>
+
                       <ul className="space-y-2">
                         {item.points.map((point, pi) => (
                           <li
@@ -211,7 +210,7 @@ export default function Education() {
                     </div>
                   </div>
 
-                  {/* Center dot — circle */}
+                  {/* Center dot — white bg circle with logo */}
                   <div className="relative z-10 items-center justify-center flex-shrink-0 hidden w-20 lg:flex">
                     <motion.div
                       initial={{ scale: 0 }}
@@ -221,17 +220,16 @@ export default function Education() {
                         type: "spring",
                         stiffness: 200,
                       }}
-                      className="w-14 h-14 rounded-full overflow-hidden border-2 flex items-center justify-center bg-[#0A1220] p-2"
+                      className="w-14 h-14 rounded-full flex items-center justify-center p-2.5 overflow-hidden"
                       style={{
-                        borderColor: item.color,
-                        boxShadow: `0 0 24px ${item.color}50`,
+                        background: "#ffffff",
+                        border: `2px solid ${item.color}`,
+                        boxShadow: `0 0 20px ${item.color}50, 0 0 40px ${item.color}20`,
                       }}
                     >
-                      <Image
+                      <img
                         src={item.img}
                         alt={item.title}
-                        width={40}
-                        height={40}
                         className="object-contain w-full h-full"
                       />
                     </motion.div>

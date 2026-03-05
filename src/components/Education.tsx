@@ -110,7 +110,7 @@ export default function Education() {
           {/* Center vertical line */}
           <div className="absolute top-0 bottom-0 hidden w-1 -translate-x-1/2 lg:block left-1/2 bg-gradient-to-b from-white/20 via-white/10 to-transparent" />
 
-          <div className="space-y-10">
+          <div className="space-y-20">
             {timeline.map((item, i) => {
               const isLeft = i % 2 === 0
               return (
